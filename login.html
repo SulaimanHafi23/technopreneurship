@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bafoto Booth - Login</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: { fontFamily:{poppins:['Poppins','sans-serif']}, colors:{primary:'#1D4ED8'} } }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body class="font-poppins bg-white text-gray-800 flex flex-col min-h-screen">
+  <header class="bg-gradient-to-r from-blue-100 via-white to-blue-100 shadow-lg border-b-2 border-primary">
+    <div class="max-w-7xl mx-auto flex justify-between items-center p-6">
+      <a href="home.html">
+        <img src="assets/logo.png" class="h-20 drop-shadow-lg transition-transform duration-300 hover:scale-105" alt="Logo">
+      </a>
+      <nav>
+        <ul class="flex gap-6 font-semibold text-lg">
+          <li><a href="home.html" class="hover:text-primary transition-colors">Home</a></li>
+          <li><a href="product.html" class="hover:text-primary transition-colors">Product</a></li>
+          <li><a href="about.html" class="hover:text-primary transition-colors">About</a></li>
+          <li><a href="contact.html" class="hover:text-primary transition-colors">Contact</a></li>
+          <li><a href="login.html" class="text-primary underline underline-offset-4">Login</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="flex-grow flex items-center justify-center bg-blue-50">
+    <div class="bg-white p-10 rounded-2xl shadow-2xl max-w-md w-full border border-blue-100">
+      <h1 class="text-3xl font-extrabold mb-8 text-center text-primary drop-shadow">Login Bafoto Booth</h1>
+      <div class="flex justify-center gap-4 mb-8">
+        <button id="btn-admin" type="button" class="px-5 py-3 rounded font-semibold border border-primary text-primary hover:bg-primary hover:text-white transition text-lg">Admin</button>
+        <button id="btn-token" type="button" class="px-5 py-3 rounded font-semibold border border-green-600 text-green-700 hover:bg-green-600 hover:text-white transition text-lg">Login Token</button>
+      </div>
+      <div class="space-y-8">
+        <form id="admin-login" class="space-y-6 bg-blue-50 p-6 rounded-xl hidden">
+          <h2 class="text-lg font-bold text-center text-primary">Login (Admin)</h2>
+          <input type="text" id="username" placeholder="Username" required
+            class="border w-full px-4 py-3 rounded focus:outline-primary text-lg">
+          <input type="password" id="password" placeholder="Password" required
+            class="border w-full px-4 py-3 rounded focus:outline-primary text-lg">
+          <button type="submit"
+            class="bg-primary w-full text-white px-4 py-3 rounded hover:bg-blue-700 transition font-bold text-lg">
+            Login
+          </button>
+        </form>
+        <form id="token-login" class="space-y-6 bg-green-50 p-6 rounded-xl hidden">
+          <h2 class="text-lg font-bold text-center text-green-700">Login (Preview Photo)</h2>
+          <input type="text" id="token" placeholder="Masukkan Token" required
+            class="border w-full px-4 py-3 rounded focus:outline-primary text-lg">
+          <button type="submit"
+            class="bg-primary w-full text-white px-4 py-3 rounded hover:bg-blue-700 transition font-bold text-lg">
+            Login
+          </button>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <footer class="bg-gradient-to-r from-blue-100 via-white to-blue-100 text-center py-6 mt-auto border-t-2 border-primary shadow-inner">
+    <span class="font-semibold text-primary">&copy; 2025 Bafoto Booth</span>
+  </footer>
+  <script>
+    // Toggle form tampil
+    const btnAdmin = document.getElementById('btn-admin');
+    const btnToken = document.getElementById('btn-token');
+    const formAdmin = document.getElementById('admin-login');
+    const formToken = document.getElementById('token-login');
+    btnAdmin.addEventListener('click', function() {
+      formAdmin.classList.remove('hidden');
+      formToken.classList.add('hidden');
+      btnAdmin.classList.add('bg-primary','text-white');
+      btnToken.classList.remove('bg-green-600','text-white');
+    });
+    btnToken.addEventListener('click', function() {
+      formToken.classList.remove('hidden');
+      formAdmin.classList.add('hidden');
+      btnToken.classList.add('bg-green-600','text-white');
+      btnAdmin.classList.remove('bg-primary','text-white');
+    });
+    // Login Admin
+    formAdmin.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      if(username && password) {
+        window.location.assign('admin.html');
+      } else {
+        alert('Username dan password wajib diisi!');
+      }
+    });
+    // Login Token
+    formToken.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const token = document.getElementById('token').value;
+      if(token) {
+        window.location.assign('preview.html');
+      } else {
+        alert('Token wajib diisi!');
+      }
+    });
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>

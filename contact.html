@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bafoto Booth - Contact</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: { fontFamily:{poppins:['Poppins','sans-serif']}, colors:{primary:'#1D4ED8'} } }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body class="font-poppins bg-white text-gray-800 flex flex-col min-h-screen">
+  <header class="bg-gradient-to-r from-blue-100 via-white to-blue-100 shadow-lg border-b-2 border-primary">
+    <div class="max-w-7xl mx-auto flex justify-between items-center p-6">
+      <a href="home.html">
+        <img src="assets/logo.png" class="h-20 drop-shadow-lg transition-transform duration-300 hover:scale-105" alt="Logo">
+      </a>
+      <nav>
+        <ul class="flex gap-6 font-semibold text-lg">
+          <li><a href="home.html" class="hover:text-primary transition-colors">Home</a></li>
+          <li><a href="product.html" class="hover:text-primary transition-colors">Product</a></li>
+          <li><a href="about.html" class="hover:text-primary transition-colors">About</a></li>
+          <li><a href="contact.html" class="text-primary underline underline-offset-4">Contact</a></li>
+          <li><a href="login.html" class="hover:text-primary transition-colors">Login</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="flex-grow max-w-lg mx-auto px-4 py-20">
+    <h1 class="text-4xl font-extrabold text-center mb-8 text-primary drop-shadow">Hubungi Kami</h1>
+    <form class="space-y-6 bg-white rounded-2xl shadow-xl border border-blue-100 p-8">
+      <input type="text" placeholder="Nama" class="border w-full px-4 py-3 rounded focus:outline-primary text-lg">
+      <input type="email" placeholder="Email" class="border w-full px-4 py-3 rounded focus:outline-primary text-lg">
+      <textarea placeholder="Pesan" class="border w-full px-4 py-3 rounded focus:outline-primary h-32 text-lg"></textarea>
+      <button type="submit"
+        class="bg-primary text-white px-8 py-3 rounded-xl hover:bg-blue-700 transition w-full font-bold text-lg shadow">
+        Kirim Pesan
+      </button>
+    </form>
+  </main>
+
+  <footer class="bg-gradient-to-r from-blue-100 via-white to-blue-100 text-center py-6 mt-auto border-t-2 border-primary shadow-inner">
+    <span class="font-semibold text-primary">&copy; 2025 Bafoto Booth</span>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>

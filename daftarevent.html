@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bafoto Booth - Daftar Event</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { poppins: ['Poppins','sans-serif'] },
+          colors: { primary: '#1D4ED8' }
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body class="font-poppins bg-white text-gray-800 flex min-h-screen">
+  <aside class="w-64 bg-gradient-to-b from-blue-900 to-blue-600 text-white flex flex-col py-8 px-6 min-h-screen shadow-lg">
+    <div class="flex flex-col items-center mb-10">
+      <img src="assets/logo.png" class="h-24 mb-4 drop-shadow-lg" alt="Logo">
+      <span class="font-extrabold text-xl tracking-wide">Bafoto Admin</span>
+    </div>
+    <nav class="flex-1">
+      <ul class="space-y-4 text-lg">
+        <li><a href="admin.html" class="block py-2 px-4 rounded hover:bg-white/10">Dashboard</a></li>
+        <li><a href="uploadevent.html" class="block py-2 px-4 rounded hover:bg-white/10">Upload Event</a></li>
+        <li><a href="daftarevent.html" class="block py-2 px-4 rounded bg-white/10 font-semibold">Daftar Event</a></li>
+        <li><a href="login.html" class="block py-2 px-4 rounded hover:bg-white/10 text-red-200">Logout</a></li>
+      </ul>
+    </nav>
+    <div class="mt-10 text-xs text-blue-100 text-center">&copy; 2025 Bafoto Booth</div>
+  </aside>
+  <div class="flex-1 flex flex-col min-h-screen bg-blue-50">
+    <header class="bg-white shadow flex items-center px-8 h-20 border-b-2 border-primary">
+      <h1 class="text-3xl font-extrabold text-primary drop-shadow flex-1">Daftar Event</h1>
+    </header>
+    <main class="flex-grow px-8 py-10">
+      <section class="bg-white rounded-2xl shadow-xl border border-blue-100 p-8 flex flex-col items-center">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr>
+              <th class="py-2 px-3 border-b">Event</th>
+              <th class="py-2 px-3 border-b">Email</th>
+              <th class="py-2 px-3 border-b">Token</th>
+              <th class="py-2 px-3 border-b">Jumlah Foto</th>
+              <th class="py-2 px-3 border-b">Aksi</th>
+            </tr>
+          </thead>
+          <tbody id="event-list">
+            <!-- Event akan di-generate oleh JS -->
+          </tbody>
+        </table>
+      </section>
+    </main>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      function getEvents() {
+        return JSON.parse(localStorage.getItem('bafoto_events')||'[]');
+      }
+      function saveEvents(events) {
+        localStorage.setItem('bafoto_events', JSON.stringify(events));
+      }
+      function renderEvents() {
+        const events = getEvents();
+        const tbody = document.getElementById('event-list');
+        tbody.innerHTML = '';
+        events.forEach((ev, idx) => {
+          const tr = document.createElement('tr');
+          tr.className = 'hover:bg-blue-50';
+          tr.innerHTML = `
+            <td class="py-2 px-3">${ev.name}</td>
+            <td class="py-2 px-3">${ev.email}</td>
+            <td class="py-2 px-3">${ev.token}</td>
+            <td class="py-2 px-3">${ev.photos.length}</td>
+            <td class="py-2 px-3">
+              <button class="text-primary hover:underline" data-action="lihat" data-idx="${idx}">Lihat</button>
+              <button class="text-red-600 hover:underline ml-2" data-action="hapus" data-idx="${idx}">Hapus</button>
+            </td>
+          `;
+          tbody.appendChild(tr);
+        });
+      }
+      function deleteEvent(idx) {
+        const events = getEvents();
+        if(confirm('Hapus event ini?')) {
+          events.splice(idx,1);
+          saveEvents(events);
+          renderEvents();
+        }
+      }
+      document.getElementById('event-list').addEventListener('click', function(e) {
+        const btn = e.target.closest('button');
+        if(!btn) return;
+        const idx = btn.getAttribute('data-idx');
+        const action = btn.getAttribute('data-action');
+        if(action === 'hapus') {
+          deleteEvent(Number(idx));
+        } else if(action === 'lihat') {
+          alert('Fitur lihat belum tersedia');
+        }
+      });
+      renderEvents();
+    });
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>

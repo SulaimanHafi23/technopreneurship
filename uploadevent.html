@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bafoto Booth - Upload Event</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { poppins: ['Poppins','sans-serif'] },
+          colors: { primary: '#1D4ED8' }
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body class="font-poppins bg-white text-gray-800 flex min-h-screen">
+  <aside class="w-64 bg-gradient-to-b from-blue-900 to-blue-600 text-white flex flex-col py-8 px-6 min-h-screen shadow-lg">
+    <div class="flex flex-col items-center mb-10">
+      <img src="assets/logo.png" class="h-24 mb-4 drop-shadow-lg" alt="Logo">
+      <span class="font-extrabold text-xl tracking-wide">Bafoto Admin</span>
+    </div>
+    <nav class="flex-1">
+      <ul class="space-y-4 text-lg">
+        <li><a href="admin.html" class="block py-2 px-4 rounded hover:bg-white/10">Dashboard</a></li>
+        <li><a href="uploadevent.html" class="block py-2 px-4 rounded bg-white/10 font-semibold">Upload Event</a></li>
+        <li><a href="daftarevent.html" class="block py-2 px-4 rounded hover:bg-white/10">Daftar Event</a></li>
+        <li><a href="login.html" class="block py-2 px-4 rounded hover:bg-white/10 text-red-200">Logout</a></li>
+      </ul>
+    </nav>
+    <div class="mt-10 text-xs text-blue-100 text-center">&copy; 2025 Bafoto Booth</div>
+  </aside>
+  <div class="flex-1 flex flex-col min-h-screen bg-blue-50">
+    <header class="bg-white shadow flex items-center px-8 h-20 border-b-2 border-primary">
+      <h1 class="text-3xl font-extrabold text-primary drop-shadow flex-1">Upload Foto Event</h1>
+    </header>
+    <main class="flex-grow px-8 py-10 flex justify-center items-start">
+      <section class="bg-white rounded-2xl shadow-xl border border-blue-100 p-8 flex flex-col items-center w-full max-w-lg">
+        <form id="upload-form" class="w-full space-y-4">
+          <input type="text" id="event-name" placeholder="Nama Event" class="border w-full px-4 py-2 rounded focus:outline-primary">
+          <input type="email" id="event-email" placeholder="Email" class="border w-full px-4 py-2 rounded focus:outline-primary">
+          <select id="event-paket" class="border w-full px-4 py-2 rounded focus:outline-primary">
+            <option value="paket1">Paket 1 - Rp. 15.000</option>
+            <option value="paket2">Paket 2 - Rp. 20.000</option>
+            <option value="paket3">Paket 3 - Rp. 30.000</option>
+          </select>
+          <div class="flex gap-2">
+            <input type="text" id="token" placeholder="Token Event" class="border flex-1 px-4 py-2 rounded focus:outline-primary">
+            <button type="button" id="generate-token" class="bg-primary text-white px-4 py-2 rounded hover:bg-blue-700 transition font-bold">Generate</button>
+          </div>
+          <input type="file" id="event-photos" multiple class="border w-full px-4 py-2 rounded focus:outline-primary">
+          <button type="submit" class="bg-primary text-white px-6 py-2 rounded hover:bg-blue-700 transition w-full font-bold">Upload</button>
+        </form>
+      </section>
+    </main>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      function getEvents() {
+        return JSON.parse(localStorage.getItem('bafoto_events')||'[]');
+      }
+      function saveEvents(events) {
+        localStorage.setItem('bafoto_events', JSON.stringify(events));
+      }
+      document.getElementById('generate-token').addEventListener('click', function() {
+        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        let token = '';
+        for(let i=0; i<10; i++) token += chars.charAt(Math.floor(Math.random()*chars.length));
+        document.getElementById('token').value = token;
+      });
+      document.getElementById('upload-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const name = document.getElementById('event-name').value.trim();
+        const email = document.getElementById('event-email').value.trim();
+        const paket = document.getElementById('event-paket').value;
+        const token = document.getElementById('token').value.trim();
+        const files = document.getElementById('event-photos').files;
+        if(!name || !email || !paket || !token || files.length===0) {
+          alert('Semua field dan foto wajib diisi!');
+          return;
+        }
+        const photos = [];
+        for(let i=0; i<files.length; i++) {
+          photos.push(files[i].name);
+        }
+        const events = getEvents();
+        events.push({ name, email, paket, token, photos });
+        saveEvents(events);
+        alert('Event berhasil diupload!');
+        this.reset();
+      });
+    });
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>

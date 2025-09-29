@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bafoto Booth - Admin</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { poppins: ['Poppins','sans-serif'] },
+          colors: { primary: '#1D4ED8' }
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+  <body class="font-poppins bg-white text-gray-800 flex min-h-screen">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-gradient-to-b from-blue-900 to-blue-600 text-white flex flex-col py-8 px-6 min-h-screen shadow-lg">
+      <div class="flex flex-col items-center mb-10">
+        <img src="assets/logo.png" class="h-24 mb-4 drop-shadow-lg" alt="Logo">
+        <span class="font-extrabold text-xl tracking-wide">Bafoto Admin</span>
+      </div>
+      <nav class="flex-1">
+        <ul class="space-y-4 text-lg" id="sidebar-menu">
+          <li><a href="admin.html" class="block py-2 px-4 rounded bg-white/10 font-semibold">Dashboard</a></li>
+          <li><a href="uploadevent.html" class="block py-2 px-4 rounded hover:bg-white/10">Upload Event</a></li>
+          <li><a href="daftarevent.html" class="block py-2 px-4 rounded hover:bg-white/10">Daftar Event</a></li>
+          <li><a href="login.html" class="block py-2 px-4 rounded hover:bg-white/10 text-red-200">Logout</a></li>
+        </ul>
+      </nav>
+      <div class="mt-10 text-xs text-blue-100 text-center">&copy; 2025 Bafoto Booth</div>
+    </aside>
+    <!-- Main Content -->
+    <div class="flex-1 flex flex-col min-h-screen bg-blue-50">
+      <header id="dashboard" class="bg-white shadow flex flex-col md:flex-row md:items-center px-8 h-auto md:h-20 border-b-2 border-primary gap-4 md:gap-0">
+        <div class="flex-1 flex flex-col md:flex-row md:items-center gap-2 md:gap-0">
+          <h1 class="text-3xl font-extrabold text-primary drop-shadow md:mr-8">Dashboard Admin</h1>
+          <div id="dashboard-info" class="flex gap-6 text-lg font-semibold text-blue-900"></div>
+        </div>
+        <div id="dashboard-paket" class="flex flex-wrap gap-4"></div>
+      </header>
+      <main class="flex-grow px-8 py-10">
+        <section class="bg-white rounded-2xl shadow-xl border border-blue-100 p-8">
+          <h2 class="text-2xl font-bold mb-6 text-primary">Rekap Event & Pendapatan</h2>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr>
+                  <th class="py-2 px-3 border-b">Event</th>
+                  <th class="py-2 px-3 border-b">Email</th>
+                  <th class="py-2 px-3 border-b">Paket</th>
+                  <th class="py-2 px-3 border-b">Harga</th>
+                  <th class="py-2 px-3 border-b">Jumlah Foto</th>
+                  <th class="py-2 px-3 border-b">Pendapatan</th>
+                </tr>
+              </thead>
+              <tbody id="recap-list">
+                <!-- Recap event by JS -->
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td colspan="5" class="py-2 px-3 font-bold text-right">Total Pendapatan</td>
+                  <td class="py-2 px-3 font-extrabold text-primary" id="recap-total">Rp0</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </section>
+      </main>
+    </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Data event di localStorage
+      function getEvents() {
+        return JSON.parse(localStorage.getItem('bafoto_events')||'[]');
+      }
+      function saveEvents(events) {
+        localStorage.setItem('bafoto_events', JSON.stringify(events));
+      }
+      function renderEvents() {
+        const events = getEvents();
+        const tbody = document.getElementById('event-list');
+        tbody.innerHTML = '';
+        events.forEach((ev, idx) => {
+          const tr = document.createElement('tr');
+          tr.className = 'hover:bg-blue-50';
+          tr.innerHTML = `
+            <td class="py-2 px-3">${ev.name}</td>
+            <td class="py-2 px-3">${ev.email}</td>
+            <td class="py-2 px-3">${ev.token}</td>
+            <td class="py-2 px-3">${ev.photos.length}</td>
+            <td class="py-2 px-3">
+              <button class="text-primary hover:underline" data-action="lihat" data-idx="${idx}">Lihat</button>
+              <button class="text-red-600 hover:underline ml-2" data-action="hapus" data-idx="${idx}">Hapus</button>
+            </td>
+          `;
+          tbody.appendChild(tr);
+        });
+        renderDashboardInfo();
+      }
+      function deleteEvent(idx) {
+        const events = getEvents();
+        if(confirm('Hapus event ini?')) {
+          events.splice(idx,1);
+          saveEvents(events);
+          renderEvents();
+        }
+      }
+      function renderDashboardInfo() {
+        const events = getEvents();
+        let totalFoto = 0;
+        events.forEach(ev=>{ totalFoto += ev.photos.length; });
+        document.getElementById('dashboard-info').innerHTML = `
+          <span>Jumlah Event: <b>${events.length}</b></span>
+          <span>Total Foto: <b>${totalFoto}</b></span>
+        `;
+        // Paket & Pendapatan (kartu)
+        const paketList = [
+          {id:'paket1', nama:'Paket 1', harga:15000, warna:'bg-blue-100', text:'text-blue-900'},
+          {id:'paket2', nama:'Paket 2', harga:20000, warna:'bg-yellow-100', text:'text-yellow-900'},
+          {id:'paket3', nama:'Paket 3', harga:30000, warna:'bg-green-100', text:'text-green-900'}
+        ];
+        let totalPendapatan = 0;
+        let html = '';
+        paketList.forEach(paket => {
+          const jumlah = events.filter(ev => ev.paket===paket.id).length;
+          const pendapatan = jumlah * paket.harga;
+          totalPendapatan += pendapatan;
+          html += `<div class="${paket.warna} ${paket.text} rounded-xl px-4 py-2 flex flex-col items-center min-w-[120px]">
+            <span class="font-bold">${paket.nama}</span>
+            <span class="text-2xl font-extrabold">${jumlah}</span>
+            <span class="text-sm">@Rp${paket.harga.toLocaleString('id-ID')}</span>
+            <span class="font-semibold mt-1">Rp${pendapatan.toLocaleString('id-ID')}</span>
+          </div>`;
+        });
+        html += `<div class="bg-primary text-white rounded-xl px-4 py-2 flex flex-col items-center min-w-[120px]">
+          <span class="font-bold">Total Pendapatan</span>
+          <span class="text-2xl font-extrabold">Rp${totalPendapatan.toLocaleString('id-ID')}</span>
+        </div>`;
+        document.getElementById('dashboard-paket').innerHTML = html;
+
+        // Recap table
+        const recapTbody = document.getElementById('recap-list');
+        if(recapTbody) {
+          recapTbody.innerHTML = '';
+          let recapTotal = 0;
+          events.forEach(ev => {
+            const paket = paketList.find(p=>p.id===ev.paket);
+            const harga = paket ? paket.harga : 0;
+            const pendapatan = harga;
+            recapTotal += pendapatan;
+            recapTbody.innerHTML += `
+              <tr>
+                <td class="py-2 px-3">${ev.name}</td>
+                <td class="py-2 px-3">${ev.email}</td>
+                <td class="py-2 px-3">${paket ? paket.nama : '-'}</td>
+                <td class="py-2 px-3">Rp${harga.toLocaleString('id-ID')}</td>
+                <td class="py-2 px-3">${ev.photos.length}</td>
+                <td class="py-2 px-3">Rp${pendapatan.toLocaleString('id-ID')}</td>
+              </tr>
+            `;
+          });
+          document.getElementById('recap-total').textContent = 'Rp'+recapTotal.toLocaleString('id-ID');
+        }
+      }
+      // Generate token otomatis (minimal 10 karakter alfanumerik)
+      document.getElementById('generate-token').addEventListener('click', function() {
+        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        let token = '';
+        for(let i=0; i<10; i++) token += chars.charAt(Math.floor(Math.random()*chars.length));
+        document.getElementById('token').value = token;
+      });
+      // Upload event
+      document.getElementById('upload-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const name = document.getElementById('event-name').value.trim();
+        const email = document.getElementById('event-email').value.trim();
+        const token = document.getElementById('token').value.trim();
+        const files = document.getElementById('event-photos').files;
+        if(!name || !email || !token || files.length===0) {
+          alert('Semua field dan foto wajib diisi!');
+          return;
+        }
+        const photos = [];
+        for(let i=0; i<files.length; i++) {
+          photos.push(files[i].name); // hanya simpan nama file, bukan file asli
+        }
+        const events = getEvents();
+        events.push({ name, email, token, photos });
+        saveEvents(events);
+        renderEvents();
+        this.reset();
+      });
+      // Event delegation untuk tombol lihat & hapus
+      document.getElementById('event-list').addEventListener('click', function(e) {
+        const btn = e.target.closest('button');
+        if(!btn) return;
+        const idx = btn.getAttribute('data-idx');
+        const action = btn.getAttribute('data-action');
+        if(action === 'hapus') {
+          deleteEvent(Number(idx));
+        } else if(action === 'lihat') {
+          alert('Fitur lihat belum tersedia');
+        }
+      });
+      // Inisialisasi
+      renderEvents();
+    });
+  </script>
+  <script>
+    // Smooth scroll sidebar
+    document.getElementById('sidebar-menu').addEventListener('click', function(e) {
+      const a = e.target.closest('a[href^="#"]');
+      if(a) {
+        const id = a.getAttribute('href').replace('#','');
+        if(id) {
+          const el = document.getElementById(id);
+          if(el) {
+            e.preventDefault();
+            el.scrollIntoView({behavior:'smooth', block:'start'});
+          }
+        }
+      }
+    });
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>
