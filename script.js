@@ -2,6 +2,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   const navMenu = document.getElementById('nav-menu');
   const navToggle = document.getElementById('nav-toggle');
+  const navOverlay = document.getElementById('nav-overlay');
 
   // Close mobile menu when a nav link is clicked
   if (navMenu) {
@@ -11,6 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
           navMenu.classList.add('hidden');
           navMenu.classList.remove('block');
           if (navToggle) navToggle.setAttribute('aria-expanded', 'false');
+          // Sembunyikan overlay jika ada
+          if (navOverlay) navOverlay.classList.add('hidden');
         }
       });
     });
@@ -78,19 +81,76 @@ document.querySelectorAll('nav a').forEach(a => {
   const toggle = document.getElementById('nav-toggle');
   const menu = document.getElementById('nav-menu');
   if (!toggle || !menu) return;
-  const toggleMenu = () => {
-    const expanded = toggle.getAttribute('aria-expanded') === 'true';
-    toggle.setAttribute('aria-expanded', String(!expanded));
-    menu.classList.toggle('hidden');
+  // Siapkan overlay global untuk menu mobile (dibuat sekali dan dipakai lintas halaman)
+  let overlay = document.getElementById('nav-overlay');
+  const desiredOverlayClass = 'fixed inset-0 bg-transparent z-40 hidden md:hidden';
+  if (!overlay) {
+    overlay = document.createElement('div');
+    overlay.id = 'nav-overlay';
+    overlay.className = desiredOverlayClass;
+    document.body.appendChild(overlay);
+  } else {
+    // Ensure old classes (e.g., bg-black/40 or backdrop-blur) are replaced
+    overlay.className = desiredOverlayClass;
+  }
+
+  const isSidebar = menu.classList.contains('as-sidebar');
+  const openMenu = () => {
+    if (isSidebar) {
+      menu.classList.remove('-translate-x-full','hidden');
+      menu.classList.add('translate-x-0');
+    } else {
+      menu.classList.remove('hidden');
+    }
+    toggle.setAttribute('aria-expanded', 'true');
+    overlay.classList.remove('hidden');
+    document.body.classList.add('overflow-hidden');
   };
+  const closeMenu = () => {
+    if (isSidebar) {
+      menu.classList.add('-translate-x-full');
+      menu.classList.remove('translate-x-0');
+    } else {
+      menu.classList.add('hidden');
+    }
+    toggle.setAttribute('aria-expanded', 'false');
+    overlay.classList.add('hidden');
+    document.body.classList.remove('overflow-hidden');
+  };
+  const isOpen = () => isSidebar ? menu.classList.contains('translate-x-0') : !menu.classList.contains('hidden');
+  const toggleMenu = () => (isOpen() ? closeMenu() : openMenu());
+
   toggle.addEventListener('click', toggleMenu);
+  overlay.addEventListener('click', closeMenu);
+  const closeBtn = document.getElementById('nav-close');
+  if (closeBtn) closeBtn.addEventListener('click', closeMenu);
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && isOpen()) {
+      closeMenu();
+    }
+  });
   // Tutup menu saat klik link
   menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
     if (window.innerWidth < 768) {
-      menu.classList.add('hidden');
-      toggle.setAttribute('aria-expanded', 'false');
+      closeMenu();
     }
   }));
+  // Pastikan overlay menghilang saat resize ke md+ dan menu mengikuti state responsif
+  window.addEventListener('resize', () => {
+    if (window.innerWidth >= 768) {
+      overlay.classList.add('hidden');
+      document.body.classList.remove('overflow-hidden');
+      if (isSidebar) {
+        // Normalize sidebar menu to visible/static state on desktop
+        menu.classList.remove('translate-x-0','-translate-x-full','hidden');
+      }
+    } else {
+      if (isSidebar) {
+        // Ensure off-canvas initial state on mobile
+        menu.classList.add('-translate-x-full');
+      }
+    }
+  });
 })();
 
 // Toggle sidebar untuk halaman admin (off-canvas di mobile)

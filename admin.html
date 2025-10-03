@@ -19,40 +19,108 @@
 </head>
   <body class="font-poppins bg-white text-gray-800 flex min-h-screen text-[15px] md:text-base">
     <!-- Sidebar -->
-  <aside id="sidebar" class="w-64 bg-gradient-to-b from-gray-800 to-gray-600 text-white flex flex-col py-8 px-6 min-h-screen shadow-lg fixed md:static inset-y-0 left-0 transform -translate-x-full md:translate-x-0 transition-transform duration-300 z-50 rounded-r-2xl md:rounded-none">
+    <aside id="sidebar" class="w-64 bg-gradient-to-b from-gray-900 to-gray-700 text-white flex flex-col py-8 px-6 min-h-screen shadow-2xl fixed md:static inset-y-0 left-0 transform -translate-x-full md:translate-x-0 transition-transform duration-300 z-50 rounded-r-2xl md:rounded-none">
       <div class="flex flex-col items-center mb-10">
-  <img src="assets/Logo.png" class="h-28 mb-4 drop-shadow-lg" alt="Logo">
+        <img src="assets/LogoPutih.png" class="h-24 mb-3 drop-shadow-xl" alt="Logo">
         <span class="font-extrabold text-xl tracking-wide">Bafoto Admin</span>
       </div>
       <nav class="flex-1">
-        <ul class="space-y-4 text-lg" id="sidebar-menu">
-          <li><a href="admin.html" class="block py-2 px-4 rounded bg-white/10 font-semibold">Dashboard</a></li>
-          <li><a href="uploadevent.html" class="block py-2 px-4 rounded hover:bg-white/10">Upload Event</a></li>
-          <li><a href="daftarevent.html" class="block py-2 px-4 rounded hover:bg-white/10">Daftar Event</a></li>
-          <li><a href="login.html" class="block py-2 px-4 rounded hover:bg-white/10 text-red-200">Logout</a></li>
+        <ul class="space-y-2 text-[15px]" id="sidebar-menu">
+          <li>
+            <a href="admin.html" class="group flex items-center gap-3 py-2 px-3 rounded-lg bg-white/10 font-semibold hover:bg-white/15 transition">
+              <svg class="w-5 h-5 opacity-90" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+              Dashboard
+            </a>
+          </li>
+          <li>
+            <a href="uploadevent.html" class="group flex items-center gap-3 py-2 px-3 rounded-lg hover:bg-white/10 transition">
+              <svg class="w-5 h-5 opacity-90" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"></path></svg>
+              Upload Event
+            </a>
+          </li>
+          <li>
+            <a href="daftarevent.html" class="group flex items-center gap-3 py-2 px-3 rounded-lg hover:bg-white/10 transition">
+              <svg class="w-5 h-5 opacity-90" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+              Daftar Event
+            </a>
+          </li>
+          <li>
+            <a href="login.html" class="group flex items-center gap-3 py-2 px-3 rounded-lg hover:bg-white/10 text-red-200 transition">
+              <svg class="w-5 h-5 opacity-90" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 01-2 2H7a2 2 0 01-2-2V7a2 2 0 012-2h4a2 2 0 012 2v1"></path></svg>
+              Logout
+            </a>
+          </li>
         </ul>
       </nav>
-      <div class="mt-10 text-xs text-blue-100 text-center">&copy; 2025 Bafoto Booth</div>
+      <div class="mt-10 text-xs text-blue-100/90 text-center">&copy; 2025 Bafoto Booth</div>
     </aside>
     <div id="sidebar-overlay" class="fixed inset-0 bg-black/40 hidden md:hidden z-40"></div>
     <!-- Main Content -->
-    <div class="flex-1 flex flex-col min-h-screen bg-gray-50 md:ml-64">
-      <header id="dashboard" class="bg-white shadow flex flex-col md:flex-row md:items-center px-4 md:px-8 h-auto md:h-20 border-b-2 border-gray-200 gap-4 md:gap-0 rounded-b-2xl md:rounded-none">
+  <div class="flex-1 flex flex-col min-h-screen bg-gray-50">
+  <header id="dashboard" class="bg-white/90 backdrop-blur shadow flex items-center px-4 md:px-8 h-16 md:h-20 border-b border-gray-200 gap-3 rounded-b-2xl md:rounded-none sticky top-0 z-30">
         <button id="sidebar-toggle" class="md:hidden inline-flex items-center justify-center p-2 rounded border border-primary text-primary hover:bg-primary hover:text-white focus:outline-none focus:ring-2 focus:ring-primary" aria-label="Toggle sidebar">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
           </svg>
         </button>
-        <div class="flex-1 flex flex-col md:flex-row md:items-center gap-2 md:gap-0">
-          <h1 class="text-3xl font-extrabold text-primary drop-shadow md:mr-8">Dashboard Admin</h1>
-          <div id="dashboard-info" class="flex gap-6 text-lg font-semibold text-blue-900"></div>
+        <div class="flex-1 flex items-center justify-end md:justify-start">
+          <h1 class="text-2xl md:text-3xl font-extrabold text-primary drop-shadow text-right md:text-left">Dashboard Admin</h1>
         </div>
-        <div id="dashboard-paket" class="flex flex-wrap gap-4"></div>
+        
       </header>
       <main class="flex-grow px-4 md:px-8 py-6 md:py-10">
+        <!-- Toolbar aksi cepat + statistik dipindah ke main -->
+        <section aria-label="Aksi Cepat" class="mb-4">
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+            <div class="flex items-center gap-2 md:gap-3">
+              <a href="uploadevent.html" class="inline-flex items-center gap-2 bg-primary text-white px-3 py-2 rounded-lg text-sm md:text-base shadow hover:bg-blue-700">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+                Tambah Event
+              </a>
+              <a href="daftarevent.html" class="inline-flex items-center gap-2 bg-white border border-gray-200 px-3 py-2 rounded-lg text-sm md:text-base hover:bg-gray-50">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                Lihat Daftar
+              </a>
+            </div>
+            <div id="dashboard-info" class="flex flex-wrap gap-2 md:gap-3 text-[14px] md:text-[15px] font-semibold text-blue-900"></div>
+          </div>
+        </section>
+        <!-- Ringkasan Paket (dipindah dari header, layout grid yang rapi) -->
+        <section aria-label="Ringkasan Paket" class="mb-5">
+          <div id="dashboard-paket" class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+            <!-- Static cards; JS hanya update angkanya -->
+            <div class="bg-blue-100 text-blue-900 rounded-xl px-4 py-3 sm:py-4 shadow text-center">
+              <div class="font-bold">Paket 1</div>
+              <div id="paket1-count" class="text-2xl font-extrabold">0</div>
+              <div class="text-sm">@Rp15.000</div>
+              <div id="paket1-total" class="font-semibold mt-1">Rp0</div>
+            </div>
+            <div class="bg-yellow-100 text-yellow-900 rounded-xl px-4 py-3 sm:py-4 shadow text-center">
+              <div class="font-bold">Paket 2</div>
+              <div id="paket2-count" class="text-2xl font-extrabold">0</div>
+              <div class="text-sm">@Rp20.000</div>
+              <div id="paket2-total" class="font-semibold mt-1">Rp0</div>
+            </div>
+            <div class="bg-green-100 text-green-900 rounded-xl px-4 py-3 sm:py-4 shadow text-center">
+              <div class="font-bold">Paket 3</div>
+              <div id="paket3-count" class="text-2xl font-extrabold">0</div>
+              <div class="text-sm">@Rp30.000</div>
+              <div id="paket3-total" class="font-semibold mt-1">Rp0</div>
+            </div>
+            <div class="bg-primary text-white rounded-xl px-4 py-3 sm:py-4 shadow text-center">
+              <div class="font-bold">Total Pendapatan</div>
+              <div id="total-pendapatan" class="text-2xl font-extrabold">Rp0</div>
+            </div>
+          </div>
+        </section>
         <section class="bg-white rounded-2xl shadow-xl border border-blue-100 p-4 md:p-8">
-          <h2 class="text-2xl font-bold mb-6 text-primary">Rekap Event & Pendapatan</h2>
-          <div class="overflow-x-auto">
+          <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mb-4">
+            <h2 class="text-2xl font-bold text-primary">Rekap Event & Pendapatan</h2>
+            <div class="text-sm text-gray-600">Data diambil dari penyimpanan lokal (demo)</div>
+          </div>
+          <!-- Mobile cards recap -->
+          <div id="recap-cards" class="grid grid-cols-1 gap-3 sm:hidden mb-4"></div>
+          <div class="overflow-x-auto hidden sm:block">
             <table class="w-full text-left border-collapse text-sm md:text-base">
               <thead>
                 <tr>
@@ -124,39 +192,35 @@
         let totalFoto = 0;
         events.forEach(ev=>{ totalFoto += ev.photos.length; });
         document.getElementById('dashboard-info').innerHTML = `
-          <span>Jumlah Event: <b>${events.length}</b></span>
-          <span>Total Foto: <b>${totalFoto}</b></span>
+          <span class="inline-flex items-center gap-1"><svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 7h18M3 12h18M3 17h18"/></svg>Jumlah Event: <b>${events.length}</b></span>
+          <span class="inline-flex items-center gap-1"><svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10l4.553-2.276A2 2 0 0122 9.618v4.764a2 2 0 01-2.447 1.894L15 14"/><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h8M4 10h8M4 14h8M4 18h8"/></svg>Total Foto: <b>${totalFoto}</b></span>
         `;
-        // Paket & Pendapatan (kartu)
+        // Paket & Pendapatan (update kartu statis)
         const paketList = [
-          {id:'paket1', nama:'Paket 1', harga:15000, warna:'bg-blue-100', text:'text-blue-900'},
-          {id:'paket2', nama:'Paket 2', harga:20000, warna:'bg-yellow-100', text:'text-yellow-900'},
-          {id:'paket3', nama:'Paket 3', harga:30000, warna:'bg-green-100', text:'text-green-900'}
+          {id:'paket1', harga:15000},
+          {id:'paket2', harga:20000},
+          {id:'paket3', harga:30000}
         ];
         let totalPendapatan = 0;
-        let html = '';
         paketList.forEach(paket => {
           const jumlah = events.filter(ev => ev.paket===paket.id).length;
           const pendapatan = jumlah * paket.harga;
           totalPendapatan += pendapatan;
-          html += `<div class="${paket.warna} ${paket.text} rounded-xl px-4 py-2 flex flex-col items-center min-w-[120px]">
-            <span class="font-bold">${paket.nama}</span>
-            <span class="text-2xl font-extrabold">${jumlah}</span>
-            <span class="text-sm">@Rp${paket.harga.toLocaleString('id-ID')}</span>
-            <span class="font-semibold mt-1">Rp${pendapatan.toLocaleString('id-ID')}</span>
-          </div>`;
+          const countEl = document.getElementById(`${paket.id}-count`);
+          const totalEl = document.getElementById(`${paket.id}-total`);
+          if (countEl) countEl.textContent = String(jumlah);
+          if (totalEl) totalEl.textContent = 'Rp'+pendapatan.toLocaleString('id-ID');
         });
-        html += `<div class="bg-primary text-white rounded-xl px-4 py-2 flex flex-col items-center min-w-[120px]">
-          <span class="font-bold">Total Pendapatan</span>
-          <span class="text-2xl font-extrabold">Rp${totalPendapatan.toLocaleString('id-ID')}</span>
-        </div>`;
-        document.getElementById('dashboard-paket').innerHTML = html;
+        const totalEl = document.getElementById('total-pendapatan');
+        if (totalEl) totalEl.textContent = 'Rp'+totalPendapatan.toLocaleString('id-ID');
 
         // Recap table (mobile-friendly with inline labels)
         const recapTbody = document.getElementById('recap-list');
         if(recapTbody) {
           recapTbody.innerHTML = '';
           let recapTotal = 0;
+          const recapCards = document.getElementById('recap-cards');
+          if (recapCards) recapCards.innerHTML = '';
           events.forEach(ev => {
             const paket = paketList.find(p=>p.id===ev.paket);
             const harga = paket ? paket.harga : 0;
@@ -190,6 +254,23 @@
                 </td>
               </tr>
             `;
+            if (recapCards) {
+              recapCards.innerHTML += `
+                <div class="border border-gray-200 rounded-xl p-3 shadow-sm">
+                  <div class="flex items-start justify-between gap-2">
+                    <div>
+                      <div class="font-semibold text-gray-800">${ev.name}</div>
+                      <div class="text-xs text-gray-500 break-all">${ev.email}</div>
+                    </div>
+                    <span class="text-xs px-2 py-1 rounded-full ${paket ? (paket.id==='paket1' ? 'bg-blue-100 text-blue-700' : paket.id==='paket2' ? 'bg-yellow-100 text-yellow-700' : 'bg-green-100 text-green-700') : 'bg-gray-100 text-gray-600'}">${paket ? paket.nama : '-'}</span>
+                  </div>
+                  <div class="mt-2 flex items-center justify-between text-sm">
+                    <span>Harga: <b>Rp${harga.toLocaleString('id-ID')}</b></span>
+                    <span>Foto: <b>${ev.photos.length}</b></span>
+                  </div>
+                  <div class="mt-1 text-right text-primary font-extrabold">Rp${pendapatan.toLocaleString('id-ID')}</div>
+                </div>`;
+            }
           });
           document.getElementById('recap-total').textContent = 'Rp'+recapTotal.toLocaleString('id-ID');
         }

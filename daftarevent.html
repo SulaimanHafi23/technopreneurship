@@ -18,35 +18,39 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body class="font-poppins bg-white text-gray-800 flex min-h-screen text-[15px] md:text-base">
-  <aside id="sidebar" class="w-64 bg-gradient-to-b from-gray-800 to-gray-600 text-white flex flex-col py-8 px-6 min-h-screen shadow-lg fixed md:static inset-y-0 left-0 transform -translate-x-full md:translate-x-0 transition-transform duration-300 z-50 rounded-r-2xl md:rounded-none">
+  <aside id="sidebar" class="w-64 bg-gradient-to-b from-gray-900 to-gray-700 text-white flex flex-col py-8 px-6 min-h-screen shadow-2xl fixed md:static inset-y-0 left-0 transform -translate-x-full md:translate-x-0 transition-transform duration-300 z-50 rounded-r-2xl md:rounded-none">
     <div class="flex flex-col items-center mb-10">
-  <img src="assets/Logo.png" class="h-28 mb-4 drop-shadow-lg" alt="Logo">
+      <img src="assets/LogoPutih.png" class="h-24 mb-3 drop-shadow-xl" alt="Logo">
       <span class="font-extrabold text-xl tracking-wide">Bafoto Admin</span>
     </div>
     <nav class="flex-1">
-      <ul class="space-y-4 text-lg">
-        <li><a href="admin.html" class="block py-2 px-4 rounded hover:bg-white/10">Dashboard</a></li>
-        <li><a href="uploadevent.html" class="block py-2 px-4 rounded hover:bg-white/10">Upload Event</a></li>
-        <li><a href="daftarevent.html" class="block py-2 px-4 rounded bg-white/10 font-semibold">Daftar Event</a></li>
-        <li><a href="login.html" class="block py-2 px-4 rounded hover:bg-white/10 text-red-200">Logout</a></li>
+      <ul class="space-y-2 text-[15px]">
+        <li><a href="admin.html" class="group flex items-center gap-3 py-2 px-3 rounded-lg hover:bg-white/10 transition"><svg class="w-5 h-5 opacity-90" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>Dashboard</a></li>
+        <li><a href="uploadevent.html" class="group flex items-center gap-3 py-2 px-3 rounded-lg hover:bg-white/10 transition"><svg class="w-5 h-5 opacity-90" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>Upload Event</a></li>
+        <li><a href="daftarevent.html" class="group flex items-center gap-3 py-2 px-3 rounded-lg bg-white/10 font-semibold transition"><svg class="w-5 h-5 opacity-90" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>Daftar Event</a></li>
+        <li><a href="login.html" class="group flex items-center gap-3 py-2 px-3 rounded-lg hover:bg-white/10 text-red-200 transition"><svg class="w-5 h-5 opacity-90" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 01-2 2H7a2 2 0 01-2-2V7a2 2 0 012-2h4a2 2 0 012 2v1"/></svg>Logout</a></li>
       </ul>
     </nav>
     <div class="mt-10 text-xs text-blue-100 text-center">&copy; 2025 Bafoto Booth</div>
   </aside>
   <div id="sidebar-overlay" class="fixed inset-0 bg-black/40 hidden md:hidden z-40"></div>
-  <div class="flex-1 flex flex-col min-h-screen bg-gray-50 md:ml-64">
-    <header class="bg-white shadow flex items-center px-4 md:px-8 h-16 md:h-20 border-b-2 border-gray-200 gap-3 rounded-b-2xl md:rounded-none">
+  <div class="flex-1 flex flex-col min-h-screen bg-gray-50">
+  <header class="bg-white/90 backdrop-blur shadow flex items-center px-4 md:px-8 h-16 md:h-20 border-b border-gray-200 gap-3 rounded-b-2xl md:rounded-none sticky top-0 z-30">
       <button id="sidebar-toggle" class="md:hidden inline-flex items-center justify-center p-2 rounded border border-primary text-primary hover:bg-primary hover:text-white focus:outline-none focus:ring-2 focus:ring-primary" aria-label="Toggle sidebar">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
         </svg>
       </button>
-      <h1 class="text-2xl md:text-3xl font-extrabold text-primary drop-shadow flex-1">Daftar Event</h1>
+      <h1 class="text-2xl md:text-3xl font-extrabold text-primary drop-shadow flex-1 text-right md:text-left">Daftar Event</h1>
     </header>
     <main class="flex-grow px-4 md:px-8 py-6 md:py-10">
       <section class="bg-white rounded-2xl shadow-xl border border-blue-100 p-4 md:p-8 flex flex-col items-center">
-        <div class="w-full overflow-x-auto">
-  <table class="w-full text-left border-collapse min-w-[640px] text-sm md:text-base">
+        <!-- Mobile cards list -->
+        <div id="event-cards" class="w-full grid grid-cols-1 gap-3 sm:hidden mb-2"></div>
+
+        <!-- Table (visible from small screens and up) -->
+        <div class="w-full overflow-x-auto hidden sm:block">
+          <table class="w-full text-left border-collapse min-w-[640px] text-sm md:text-base">
           <thead>
             <tr>
               <th class="py-2 px-3 border-b">Event</th>
@@ -59,7 +63,7 @@
           <tbody id="event-list">
             <!-- Event akan di-generate oleh JS -->
           </tbody>
-        </table>
+          </table>
         </div>
       </section>
     </main>
@@ -75,33 +79,60 @@
       function renderEvents() {
         const events = getEvents();
         const tbody = document.getElementById('event-list');
-        tbody.innerHTML = '';
+        const cards = document.getElementById('event-cards');
+        if (tbody) tbody.innerHTML = '';
+        if (cards) cards.innerHTML = '';
         events.forEach((ev, idx) => {
-          const tr = document.createElement('tr');
-          tr.className = 'hover:bg-blue-50 align-top';
-          tr.innerHTML = `
-            <td class="py-3 px-3">
-              <span class="sm:hidden block text-[11px] text-gray-500 mb-1">Event</span>
-              ${ev.name}
-            </td>
-            <td class="py-3 px-3 break-all">
-              <span class="sm:hidden block text-[11px] text-gray-500 mb-1">Email</span>
-              ${ev.email}
-            </td>
-            <td class="py-3 px-3">
-              <span class="sm:hidden block text-[11px] text-gray-500 mb-1">Token</span>
-              ${ev.token}
-            </td>
-            <td class="py-3 px-3">
-              <span class="sm:hidden block text-[11px] text-gray-500 mb-1">Jumlah Foto</span>
-              ${ev.photos.length}
-            </td>
-            <td class="py-3 px-3 whitespace-nowrap">
-              <button class="text-primary hover:underline" data-action="lihat" data-idx="${idx}">Lihat</button>
-              <button class="text-red-600 hover:underline ml-2" data-action="hapus" data-idx="${idx}">Hapus</button>
-            </td>
-          `;
-          tbody.appendChild(tr);
+          if (tbody) {
+            const tr = document.createElement('tr');
+            tr.className = 'hover:bg-blue-50 align-top';
+            tr.innerHTML = `
+              <td class="py-3 px-3">
+                <span class="sm:hidden block text-[11px] text-gray-500 mb-1">Event</span>
+                ${ev.name}
+              </td>
+              <td class="py-3 px-3 break-all">
+                <span class="sm:hidden block text-[11px] text-gray-500 mb-1">Email</span>
+                ${ev.email}
+              </td>
+              <td class="py-3 px-3">
+                <span class="sm:hidden block text-[11px] text-gray-500 mb-1">Token</span>
+                ${ev.token}
+              </td>
+              <td class="py-3 px-3">
+                <span class="sm:hidden block text-[11px] text-gray-500 mb-1">Jumlah Foto</span>
+                ${ev.photos.length}
+              </td>
+              <td class="py-3 px-3 whitespace-nowrap">
+                <button class="text-primary hover:underline" data-action="lihat" data-idx="${idx}">Lihat</button>
+                <button class="text-red-600 hover:underline ml-2" data-action="hapus" data-idx="${idx}">Hapus</button>
+              </td>
+            `;
+            tbody.appendChild(tr);
+          }
+
+          if (cards) {
+            // Mobile card
+            const card = document.createElement('div');
+            card.className = 'border border-gray-200 rounded-xl p-3 shadow-sm';
+            card.innerHTML = `
+              <div class="flex items-start justify-between gap-2">
+                <div>
+                  <div class="font-semibold text-gray-800">${ev.name}</div>
+                  <div class="text-xs text-gray-500 break-all">${ev.email}</div>
+                </div>
+                <span class="text-xs px-2 py-1 rounded-full bg-gray-100 text-gray-700">${ev.token}</span>
+              </div>
+              <div class="mt-2 flex items-center justify-between text-sm">
+                <span>Foto: <b>${ev.photos.length}</b></span>
+                <div>
+                  <button class="text-primary hover:underline" data-action="lihat" data-idx="${idx}">Lihat</button>
+                  <button class="text-red-600 hover:underline ml-3" data-action="hapus" data-idx="${idx}">Hapus</button>
+                </div>
+              </div>
+            `;
+            cards.appendChild(card);
+          }
         });
       }
       function deleteEvent(idx) {
@@ -112,17 +143,35 @@
           renderEvents();
         }
       }
-      document.getElementById('event-list').addEventListener('click', function(e) {
-        const btn = e.target.closest('button');
-        if(!btn) return;
-        const idx = btn.getAttribute('data-idx');
-        const action = btn.getAttribute('data-action');
-        if(action === 'hapus') {
-          deleteEvent(Number(idx));
-        } else if(action === 'lihat') {
-          alert('Fitur lihat belum tersedia');
-        }
-      });
+      const listEl = document.getElementById('event-list');
+      if (listEl) {
+        listEl.addEventListener('click', function(e) {
+          const btn = e.target.closest('button');
+          if(!btn) return;
+          const idx = btn.getAttribute('data-idx');
+          const action = btn.getAttribute('data-action');
+          if(action === 'hapus') {
+            deleteEvent(Number(idx));
+          } else if(action === 'lihat') {
+            alert('Fitur lihat belum tersedia');
+          }
+        });
+      }
+
+      const cardsEl = document.getElementById('event-cards');
+      if (cardsEl) {
+        cardsEl.addEventListener('click', function(e) {
+          const btn = e.target.closest('button');
+          if(!btn) return;
+          const idx = btn.getAttribute('data-idx');
+          const action = btn.getAttribute('data-action');
+          if(action === 'hapus') {
+            deleteEvent(Number(idx));
+          } else if(action === 'lihat') {
+            alert('Fitur lihat belum tersedia');
+          }
+        });
+      }
       renderEvents();
     });
   </script>

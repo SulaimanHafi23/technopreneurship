@@ -18,30 +18,33 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body class="font-poppins bg-white text-gray-800 flex min-h-screen text-[15px] md:text-base">
-  <aside id="sidebar" class="w-64 bg-gradient-to-b from-gray-800 to-gray-600 text-white flex flex-col py-8 px-6 min-h-screen shadow-lg fixed md:static inset-y-0 left-0 transform -translate-x-full md:translate-x-0 transition-transform duration-300 z-50 rounded-r-2xl md:rounded-none">
+  <aside id="sidebar" class="w-64 bg-gradient-to-b from-gray-900 to-gray-700 text-white flex flex-col py-8 px-6 min-h-screen shadow-2xl fixed md:static inset-y-0 left-0 transform -translate-x-full md:translate-x-0 transition-transform duration-300 z-50 rounded-r-2xl md:rounded-none">
     <div class="flex flex-col items-center mb-10">
-  <img src="assets/Logo.png" class="h-28 mb-4 drop-shadow-lg" alt="Logo">
+      <img src="assets/LogoPutih.png" class="h-24 mb-3 drop-shadow-xl" alt="Logo">
       <span class="font-extrabold text-xl tracking-wide">Bafoto Admin</span>
     </div>
     <nav class="flex-1">
-      <ul class="space-y-4 text-lg">
-        <li><a href="admin.html" class="block py-2 px-4 rounded hover:bg-white/10">Dashboard</a></li>
-        <li><a href="uploadevent.html" class="block py-2 px-4 rounded bg-white/10 font-semibold">Upload Event</a></li>
-        <li><a href="daftarevent.html" class="block py-2 px-4 rounded hover:bg-white/10">Daftar Event</a></li>
-        <li><a href="login.html" class="block py-2 px-4 rounded hover:bg-white/10 text-red-200">Logout</a></li>
+      <ul class="space-y-2 text-[15px]">
+        <li><a href="admin.html" class="group flex items-center gap-3 py-2 px-3 rounded-lg hover:bg-white/10 transition"><svg class="w-5 h-5 opacity-90" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>Dashboard</a></li>
+        <li><a href="uploadevent.html" class="group flex items-center gap-3 py-2 px-3 rounded-lg bg-white/10 font-semibold transition"><svg class="w-5 h-5 opacity-90" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>Upload Event</a></li>
+        <li><a href="daftarevent.html" class="group flex items-center gap-3 py-2 px-3 rounded-lg hover:bg-white/10 transition"><svg class="w-5 h-5 opacity-90" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>Daftar Event</a></li>
+        <li><a href="login.html" class="group flex items-center gap-3 py-2 px-3 rounded-lg hover:bg-white/10 text-red-200 transition"><svg class="w-5 h-5 opacity-90" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 01-2 2H7a2 2 0 01-2-2V7a2 2 0 012-2h4a2 2 0 012 2v1"/></svg>Logout</a></li>
       </ul>
     </nav>
     <div class="mt-10 text-xs text-blue-100 text-center">&copy; 2025 Bafoto Booth</div>
   </aside>
   <div id="sidebar-overlay" class="fixed inset-0 bg-black/40 hidden md:hidden z-40"></div>
-  <div class="flex-1 flex flex-col min-h-screen bg-gray-50 md:ml-64">
-    <header class="bg-white shadow flex items-center px-4 md:px-8 h-16 md:h-20 border-b-2 border-gray-200 gap-3 rounded-b-2xl md:rounded-none">
+  <div class="flex-1 flex flex-col min-h-screen bg-gray-50">
+    <header class="bg-white/90 backdrop-blur shadow flex items-center justify-between px-4 md:px-8 h-16 md:h-20 border-b border-gray-200 gap-3 rounded-b-2xl md:rounded-none sticky top-0 z-30">
       <button id="sidebar-toggle" class="md:hidden inline-flex items-center justify-center p-2 rounded border border-primary text-primary hover:bg-primary hover:text-white focus:outline-none focus:ring-2 focus:ring-primary" aria-label="Toggle sidebar">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
         </svg>
       </button>
-      <h1 class="text-2xl md:text-3xl font-extrabold text-primary drop-shadow flex-1">Upload Foto Event</h1>
+      <h1 class="text-2xl md:text-3xl font-extrabold text-primary drop-shadow">Upload Foto Event</h1>
+      <div class="hidden md:flex items-center gap-2">
+        <a href="daftarevent.html" class="inline-flex items-center gap-2 bg-white border border-gray-200 px-3 py-2 rounded-lg text-sm md:text-base hover:bg-gray-50"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>Daftar Event</a>
+      </div>
     </header>
     <main class="flex-grow px-4 md:px-8 py-6 md:py-10 flex justify-center items-start">
       <section class="bg-white rounded-2xl shadow-xl border border-blue-100 p-6 md:p-8 flex flex-col items-center w-full max-w-lg">
@@ -54,9 +57,9 @@
 
           <label class="block text-sm font-semibold mb-1" for="event-paket">Pilih Paket</label>
           <select id="event-paket" required class="border w-full px-4 py-3 rounded focus:outline-primary">
-            <option value="paket1">Paket 1 - Rp. 15.000</option>
-            <option value="paket2">Paket 2 - Rp. 20.000</option>
-            <option value="paket3">Paket 3 - Rp. 30.000</option>
+            <option value="paket1">Paket 1 - Rp. 10.000</option>
+            <option value="paket2">Paket 2 - Rp. 15.000</option>
+            <option value="paket3">Paket 3 - Rp. 20.000</option>
           </select>
           <div class="flex gap-2">
             <div class="flex-1">
@@ -69,7 +72,8 @@
           </div>
           <label class="block text-sm font-semibold mb-1" for="event-photos">Upload Foto</label>
           <input type="file" id="event-photos" multiple required accept="image/*" class="border w-full px-4 py-3 rounded focus:outline-primary">
-          <p class="text-xs text-gray-500 -mt-1">Pilih beberapa foto sekaligus (JPG/PNG). Total maksimal disarankan 25MB.</p>
+          <p class="text-xs text-gray-500 -mt-1">Pilih beberapa foto sekaligus (JPG/PNG)</p>
+          <!-- <div class="text-xs text-gray-500">Catatan: Aplikasi demo menyimpan metadata saja (nama file), bukan file asli.</div> -->
           <button type="submit" class="bg-primary text-white px-6 py-3 rounded hover:bg-blue-700 transition w-full font-bold">Upload</button>
         </form>
       </section>
