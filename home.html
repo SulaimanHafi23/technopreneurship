@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="scroll-smooth">
 <!-- head sama seperti di atas, ganti judul -->
 <head>
   <meta charset="UTF-8">
@@ -20,39 +20,142 @@
 </head>
 <body class="font-poppins bg-white text-gray-800 flex flex-col min-h-screen">
   <!-- Header -->
-  <header class="bg-gradient-to-r from-blue-100 via-white to-blue-100 shadow-lg border-b-2 border-primary">
-    <div class="max-w-7xl mx-auto flex justify-between items-center p-6">
-      <a href="home.html">
-        <img src="assets/logo.png" alt="Logo" class="h-20 drop-shadow-lg transition-transform duration-300 hover:scale-105">
-      </a>
-      <nav>
-        <ul class="flex gap-6 font-semibold text-lg">
-          <li><a href="home.html" class="text-primary underline underline-offset-4">Home</a></li>
-          <li><a href="product.html" class="hover:text-primary transition-colors">Product</a></li>
-          <li><a href="about.html" class="hover:text-primary transition-colors">About</a></li>
-          <li><a href="contact.html" class="hover:text-primary transition-colors">Contact</a></li>
-          <li><a href="login.html" class="hover:text-primary transition-colors">Login</a></li>
-        </ul>
-      </nav>
+  <header class="bg-gradient-to-r from-gray-100 via-white to-gray-100 shadow-lg border-b border-gray-200 sticky top-0 z-50 backdrop-blur-sm">
+    <div class="max-w-7xl mx-auto p-2 md:p-3">
+      <div class="flex items-center justify-between">
+        <a href="#home" class="flex items-center gap-2">
+          <img src="assets/Logo.png" alt="Logo" class="h-16 md:h-20 drop-shadow-lg transition-transform duration-300 hover:scale-105">
+          <span class="hidden sm:inline font-extrabold text-primary">Bafoto Booth</span>
+        </a>
+        <button id="nav-toggle" class="md:hidden inline-flex items-center justify-center p-2 rounded border border-primary text-primary hover:bg-primary hover:text-white focus:outline-none focus:ring-2 focus:ring-primary" aria-controls="nav-menu" aria-expanded="false" aria-label="Toggle navigation">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+        <nav id="nav-menu" class="hidden md:block mt-2 md:mt-0">
+          <ul class="flex flex-col md:flex-row md:gap-2 lg:gap-3 font-semibold text-xs md:text-sm border-t pt-2 md:border-0 md:pt-0">
+            <li class="py-0.5 md:py-0"><a href="#home" class="text-primary underline underline-offset-4 block px-2 py-1.5 rounded-lg hover:bg-gray-100">Home</a></li>
+            <li class="py-0.5 md:py-0"><a href="#product" class="hover:text-primary transition-colors block px-2 py-1.5 rounded-lg hover:bg-gray-100">Product</a></li>
+            <li class="py-0.5 md:py-0"><a href="#about" class="hover:text-primary transition-colors block px-2 py-1.5 rounded-lg hover:bg-gray-100">About</a></li>
+            <li class="py-0.5 md:py-0"><a href="#contact" class="hover:text-primary transition-colors block px-2 py-1.5 rounded-lg hover:bg-gray-100">Contact</a></li>
+            <li class="py-0.5 md:py-0"><a href="login.html" class="hover:text-primary transition-colors block px-2 py-1.5 rounded-lg hover:bg-gray-100">Login</a></li>
+          </ul>
+        </nav>
+      </div>
     </div>
   </header>
 
   <!-- Main -->
   <main class="flex-grow">
-    <section class="text-center py-24 bg-gradient-to-r from-blue-50 via-white to-blue-100 shadow-inner rounded-b-3xl">
-      <h1 class="text-5xl md:text-6xl font-extrabold mb-6 text-primary drop-shadow">Selamat Datang di Bafoto Booth</h1>
-      <p class="max-w-2xl mx-auto mb-10 text-xl text-gray-700">
-        Studio photobooth modern untuk mengabadikan momen spesial Anda dengan pengalaman seru dan properti menarik.
-      </p>
-      <a href="product.html"
-         class="bg-primary text-white px-8 py-4 rounded-xl font-bold text-lg shadow-lg hover:bg-blue-700 hover:scale-105 transition-transform duration-200">
-         Lihat Paket Foto
-      </a>
+    <!-- HOME / HERO (Full viewport minus header) -->
+    <section id="home" class="scroll-mt-24 relative overflow-hidden bg-gradient-to-br from-blue-50 via-white to-purple-50 shadow-inner rounded-b-3xl">
+      <!-- Decorative blobs -->
+  <div aria-hidden="true" class="pointer-events-none absolute -top-16 -left-16 w-72 h-72 bg-blue-300/25 rounded-full blur-3xl z-0"></div>
+  <div aria-hidden="true" class="pointer-events-none absolute -bottom-16 -right-16 w-80 h-80 bg-purple-300/25 rounded-full blur-3xl z-0"></div>
+
+      <div class="max-w-7xl mx-auto px-4 py-10 md:py-12 min-h-[calc(100vh-80px)] md:min-h-[calc(100vh-88px)] flex items-center">
+        <div class="grid md:grid-cols-2 gap-10 items-center w-full">
+          <!-- Copy -->
+          <div class="text-center md:text-left">
+            <h1 class="text-4xl md:text-6xl font-extrabold mb-4 md:mb-6 text-primary drop-shadow">Selamat Datang di Bafoto Booth</h1>
+            <p class="max-w-xl mx-auto md:mx-0 mb-8 md:mb-10 text-lg md:text-xl text-gray-700">
+              Abadikan momen spesial Anda dengan pengalaman photobooth yang fun, kreatif, dan berkualitas profesional.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 sm:gap-3 justify-center md:justify-start">
+              <a href="#product" class="inline-block bg-primary text-white px-6 md:px-7 py-3 md:py-3.5 rounded-xl font-bold text-base md:text-lg shadow-lg hover:bg-blue-700 hover:scale-105 transition-transform duration-200">Lihat Paket Foto</a>
+              <a href="#contact" class="inline-block bg-white text-primary px-6 md:px-7 py-3 md:py-3.5 rounded-xl font-bold text-base md:text-lg shadow-lg border border-primary/30 hover:bg-blue-50">Hubungi Kami</a>
+            </div>
+          </div>
+
+          <!-- Visual: Collage panel to fill right side -->
+          <div class="relative z-10 hidden sm:block">
+            <div class="mx-auto md:mx-0 w-[22rem] lg:w-[26rem] bg-white/70 backdrop-blur rounded-3xl border border-gray-200 shadow-2xl p-4">
+              <div class="grid grid-cols-2 gap-4">
+                <div class="bg-white border-8 border-white rounded-lg shadow-xl rotate-[-3deg]">
+                  <img src="https://images.unsplash.com/photo-1520974747644-0a86adf3e6b9?ixlib=rb-4.1.0&q=80&w=640&h=640&fit=crop&auto=format" alt="Pose seru di photobooth" class="w-full h-40 object-cover rounded block" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='assets/Logo.png';this.classList.add('object-contain','bg-white','p-4');">
+                </div>
+                <div class="bg-white border-8 border-white rounded-lg shadow-xl rotate-2">
+                  <img src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?ixlib=rb-4.1.0&q=80&w=640&h=640&fit=crop&auto=format" alt="Properti lucu" class="w-full h-40 object-cover rounded block" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='assets/Logo.png';this.classList.add('object-contain','bg-white','p-4');">
+                </div>
+                <div class="bg-white border-8 border-white rounded-lg shadow-xl rotate-2 col-span-2">
+                  <img src="https://images.unsplash.com/photo-1519139270028-ab664cf42264?ixlib=rb-4.1.0&q=80&w=1280&h=640&fit=crop&auto=format" alt="Kenangan tak terlupakan" class="w-full h-48 object-cover rounded block" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='assets/Logo.png';this.classList.add('object-contain','bg-white','p-4');">
+                </div>
+              </div>
+              <div class="mt-4 flex items-center gap-3">
+                <span class="inline-flex h-3 w-3 rounded-full bg-red-500 animate-pulse"></span>
+                <p class="text-sm text-gray-700"><span class="font-bold text-primary">500+ </span>foto berhasil diabadikan</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRODUCT SECTION -->
+    <section id="product" class="scroll-mt-24 max-w-6xl mx-auto px-4 py-16">
+      <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-4 text-primary drop-shadow">Paket Layanan</h2>
+      <p class="text-center mb-10 text-lg text-gray-600">Berbagai paket photobooth sesuai kebutuhan acara Anda.</p>
+
+      <div class="grid md:grid-cols-3 gap-10">
+        <div class="bg-white p-6 rounded-2xl shadow-xl border border-blue-100 hover:shadow-2xl hover:-translate-y-2 transition flex flex-col items-center group">
+          <img src="https://images.unsplash.com/photo-1578376706507-35e6dd7af19c?w=294&dpr=1&h=294&auto=format&fit=crop&q=60" alt="Paket 1" class="w-full h-44 object-cover rounded-xl mb-4 group-hover:scale-105 transition-transform">
+          <h3 class="text-2xl font-bold mb-2 text-primary">Paket 1</h3>
+          <p class="text-gray-700">Anda akan mendapatkan 2 Strip Photo, dan 5 photo digital</p>
+          <span class="block mt-4 text-primary font-extrabold text-xl">Rp 15.000,00-</span>
+        </div>
+        <div class="bg-white p-6 rounded-2xl shadow-xl border border-blue-100 hover:shadow-2xl hover:-translate-y-2 transition flex flex-col items-center group">
+          <img src="https://plus.unsplash.com/premium_photo-1732818659738-edd686a45d82?w=500&auto=format&fit=crop&q=60" alt="Paket 2" class="w-full h-44 object-cover rounded-xl mb-4 group-hover:scale-105 transition-transform">
+          <h3 class="text-2xl font-bold mb-2 text-primary">Paket 2</h3>
+          <p class="text-gray-700">Anda akan mendapatkan 2 Strip Photo, dan 10 photo digital</p>
+          <span class="block mt-4 text-primary font-extrabold text-xl">Rp 20.000,00-</span>
+        </div>
+        <div class="bg-white p-6 rounded-2xl shadow-xl border border-blue-100 hover:shadow-2xl hover:-translate-y-2 transition flex flex-col items-center group">
+          <img src="https://plus.unsplash.com/premium_photo-1697945800806-e5d8fe424928?w=500&auto=format&fit=crop&q=60" alt="Paket 3" class="w-full h-44 object-cover rounded-xl mb-4 group-hover:scale-105 transition-transform">
+          <h3 class="text-2xl font-bold mb-2 text-primary">Paket 3</h3>
+          <p class="text-gray-700">Anda akan mendapatkan 4 Strip Photo, dan 20 Photo digital</p>
+          <span class="block mt-4 text-primary font-extrabold text-xl">Rp 30.000,00-</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="scroll-mt-24 max-w-4xl mx-auto px-4 py-16">
+      <h2 class="text-3xl md:text-4xl font-extrabold mb-8 text-center text-primary drop-shadow">Tentang Bafoto Booth</h2>
+      <div class="bg-white rounded-2xl shadow-xl border border-blue-100 p-8 text-lg text-gray-700 leading-relaxed">
+        <p class="mb-4">
+          Bafoto Booth berdiri pada 2025 di Kabupaten Tanah Laut, Kalimantan Selatan, lahir dari hobi pendirinya di dunia
+          fotografi dan dokumentasi. Menjawab tingginya minat masyarakat untuk mengabadikan momen spesial—mulai dari pernikahan,
+          ulang tahun, wisuda, hingga acara perusahaan—kami hadir dengan layanan photobooth yang kreatif, modern, dan terjangkau.
+        </p>
+        <p class="mb-4">
+          Didukung peralatan profesional, desain cetakan yang menarik, dan pengalaman di event organizer serta studio foto,
+          kami menawarkan dokumentasi instan yang seru sekaligus berkualitas. Di tengah tren fotografi digital dan media sosial,
+          Bafoto Booth menjadi pilihan untuk menambah keseruan acara dan mempererat kebersamaan.
+        </p>
+        <p>
+          Tujuan kami sederhana: menghadirkan pengalaman berfoto yang menyenangkan dengan hasil berkualitas tinggi, sekaligus
+          mendorong berkembangnya industri kreatif di Tanah Laut melalui pemanfaatan potensi lokal.
+        </p>
+      </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="scroll-mt-24 max-w-lg mx-auto px-4 py-16">
+      <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-8 text-primary drop-shadow">Hubungi Kami</h2>
+      <form class="space-y-6 bg-white rounded-2xl shadow-xl border border-blue-100 p-8">
+        <input type="text" placeholder="Nama" class="border w-full px-4 py-3 rounded focus:outline-primary text-lg">
+        <input type="email" placeholder="Email" class="border w-full px-4 py-3 rounded focus:outline-primary text-lg">
+        <textarea placeholder="Pesan" class="border w-full px-4 py-3 rounded focus:outline-primary h-32 text-lg"></textarea>
+        <button type="submit"
+          class="bg-primary text-white px-8 py-3 rounded-xl hover:bg-blue-700 transition w-full font-bold text-lg shadow">
+          Kirim Pesan
+        </button>
+      </form>
     </section>
   </main>
 
   <!-- Footer -->
-  <footer class="bg-gradient-to-r from-blue-100 via-white to-blue-100 text-center py-6 mt-auto border-t-2 border-primary shadow-inner">
+  <footer class="bg-gradient-to-r from-gray-100 via-white to-gray-100 text-center py-6 mt-auto border-t-2 border-gray-200 shadow-inner">
     <span class="font-semibold text-primary">&copy; 2025 Bafoto Booth</span>
   </footer>
   <script src="script.js"></script>

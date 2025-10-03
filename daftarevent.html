@@ -17,10 +17,10 @@
   </script>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
-<body class="font-poppins bg-white text-gray-800 flex min-h-screen">
-  <aside class="w-64 bg-gradient-to-b from-blue-900 to-blue-600 text-white flex flex-col py-8 px-6 min-h-screen shadow-lg">
+<body class="font-poppins bg-white text-gray-800 flex min-h-screen text-[15px] md:text-base">
+  <aside id="sidebar" class="w-64 bg-gradient-to-b from-gray-800 to-gray-600 text-white flex flex-col py-8 px-6 min-h-screen shadow-lg fixed md:static inset-y-0 left-0 transform -translate-x-full md:translate-x-0 transition-transform duration-300 z-50 rounded-r-2xl md:rounded-none">
     <div class="flex flex-col items-center mb-10">
-      <img src="assets/logo.png" class="h-24 mb-4 drop-shadow-lg" alt="Logo">
+  <img src="assets/Logo.png" class="h-28 mb-4 drop-shadow-lg" alt="Logo">
       <span class="font-extrabold text-xl tracking-wide">Bafoto Admin</span>
     </div>
     <nav class="flex-1">
@@ -33,13 +33,20 @@
     </nav>
     <div class="mt-10 text-xs text-blue-100 text-center">&copy; 2025 Bafoto Booth</div>
   </aside>
-  <div class="flex-1 flex flex-col min-h-screen bg-blue-50">
-    <header class="bg-white shadow flex items-center px-8 h-20 border-b-2 border-primary">
-      <h1 class="text-3xl font-extrabold text-primary drop-shadow flex-1">Daftar Event</h1>
+  <div id="sidebar-overlay" class="fixed inset-0 bg-black/40 hidden md:hidden z-40"></div>
+  <div class="flex-1 flex flex-col min-h-screen bg-gray-50 md:ml-64">
+    <header class="bg-white shadow flex items-center px-4 md:px-8 h-16 md:h-20 border-b-2 border-gray-200 gap-3 rounded-b-2xl md:rounded-none">
+      <button id="sidebar-toggle" class="md:hidden inline-flex items-center justify-center p-2 rounded border border-primary text-primary hover:bg-primary hover:text-white focus:outline-none focus:ring-2 focus:ring-primary" aria-label="Toggle sidebar">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+      <h1 class="text-2xl md:text-3xl font-extrabold text-primary drop-shadow flex-1">Daftar Event</h1>
     </header>
-    <main class="flex-grow px-8 py-10">
-      <section class="bg-white rounded-2xl shadow-xl border border-blue-100 p-8 flex flex-col items-center">
-        <table class="w-full text-left border-collapse">
+    <main class="flex-grow px-4 md:px-8 py-6 md:py-10">
+      <section class="bg-white rounded-2xl shadow-xl border border-blue-100 p-4 md:p-8 flex flex-col items-center">
+        <div class="w-full overflow-x-auto">
+  <table class="w-full text-left border-collapse min-w-[640px] text-sm md:text-base">
           <thead>
             <tr>
               <th class="py-2 px-3 border-b">Event</th>
@@ -53,6 +60,7 @@
             <!-- Event akan di-generate oleh JS -->
           </tbody>
         </table>
+        </div>
       </section>
     </main>
   </div>
@@ -70,13 +78,25 @@
         tbody.innerHTML = '';
         events.forEach((ev, idx) => {
           const tr = document.createElement('tr');
-          tr.className = 'hover:bg-blue-50';
+          tr.className = 'hover:bg-blue-50 align-top';
           tr.innerHTML = `
-            <td class="py-2 px-3">${ev.name}</td>
-            <td class="py-2 px-3">${ev.email}</td>
-            <td class="py-2 px-3">${ev.token}</td>
-            <td class="py-2 px-3">${ev.photos.length}</td>
-            <td class="py-2 px-3">
+            <td class="py-3 px-3">
+              <span class="sm:hidden block text-[11px] text-gray-500 mb-1">Event</span>
+              ${ev.name}
+            </td>
+            <td class="py-3 px-3 break-all">
+              <span class="sm:hidden block text-[11px] text-gray-500 mb-1">Email</span>
+              ${ev.email}
+            </td>
+            <td class="py-3 px-3">
+              <span class="sm:hidden block text-[11px] text-gray-500 mb-1">Token</span>
+              ${ev.token}
+            </td>
+            <td class="py-3 px-3">
+              <span class="sm:hidden block text-[11px] text-gray-500 mb-1">Jumlah Foto</span>
+              ${ev.photos.length}
+            </td>
+            <td class="py-3 px-3 whitespace-nowrap">
               <button class="text-primary hover:underline" data-action="lihat" data-idx="${idx}">Lihat</button>
               <button class="text-red-600 hover:underline ml-2" data-action="hapus" data-idx="${idx}">Hapus</button>
             </td>
