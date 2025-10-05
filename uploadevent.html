@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bafoto Booth - Upload Event</title>
+  <title>Bafoto Booth - Upload Foto</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -26,8 +26,8 @@
     <nav class="flex-1">
       <ul class="space-y-2 text-[15px]">
         <li><a href="admin.html" class="group flex items-center gap-3 py-2 px-3 rounded-lg hover:bg-white/10 transition"><svg class="w-5 h-5 opacity-90" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>Dashboard</a></li>
-        <li><a href="uploadevent.html" class="group flex items-center gap-3 py-2 px-3 rounded-lg bg-white/10 font-semibold transition"><svg class="w-5 h-5 opacity-90" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>Upload Event</a></li>
-        <li><a href="daftarevent.html" class="group flex items-center gap-3 py-2 px-3 rounded-lg hover:bg-white/10 transition"><svg class="w-5 h-5 opacity-90" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>Daftar Event</a></li>
+  <li><a href="uploadevent.html" class="group flex items-center gap-3 py-2 px-3 rounded-lg bg-white/10 font-semibold transition"><svg class="w-5 h-5 opacity-90" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>Upload Foto</a></li>
+  <li><a href="daftarevent.html" class="group flex items-center gap-3 py-2 px-3 rounded-lg hover:bg-white/10 transition"><svg class="w-5 h-5 opacity-90" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>Daftar Pelanggan</a></li>
         <li><a href="login.html" class="group flex items-center gap-3 py-2 px-3 rounded-lg hover:bg-white/10 text-red-200 transition"><svg class="w-5 h-5 opacity-90" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 01-2 2H7a2 2 0 01-2-2V7a2 2 0 012-2h4a2 2 0 012 2v1"/></svg>Logout</a></li>
       </ul>
     </nav>
@@ -41,16 +41,16 @@
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
         </svg>
       </button>
-      <h1 class="text-2xl md:text-3xl font-extrabold text-primary drop-shadow">Upload Foto Event</h1>
+  <h1 class="text-2xl md:text-3xl font-extrabold text-primary drop-shadow">Upload Foto</h1>
       <div class="hidden md:flex items-center gap-2">
-        <a href="daftarevent.html" class="inline-flex items-center gap-2 bg-white border border-gray-200 px-3 py-2 rounded-lg text-sm md:text-base hover:bg-gray-50"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>Daftar Event</a>
+  <a href="daftarevent.html" class="inline-flex items-center gap-2 bg-white border border-gray-200 px-3 py-2 rounded-lg text-sm md:text-base hover:bg-gray-50"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>Daftar Pelanggan</a>
       </div>
     </header>
     <main class="flex-grow px-4 md:px-8 py-6 md:py-10 flex justify-center items-start">
       <section class="bg-white rounded-2xl shadow-xl border border-blue-100 p-6 md:p-8 flex flex-col items-center w-full max-w-lg">
         <form id="upload-form" class="w-full space-y-4">
-          <label class="block text-sm font-semibold mb-1" for="event-name">Nama Event</label>
-          <input type="text" id="event-name" placeholder="Masukkan nama event" required class="border w-full px-4 py-3 rounded focus:outline-primary" autocomplete="off">
+          <label class="block text-sm font-semibold mb-1" for="event-name">Nama Pelanggan</label>
+          <input type="text" id="event-name" placeholder="Masukkan nama Pelanggan" required class="border w-full px-4 py-3 rounded focus:outline-primary" autocomplete="off">
 
           <label class="block text-sm font-semibold mb-1" for="event-email">Email</label>
           <input type="email" id="event-email" placeholder="nama@email.com" required class="border w-full px-4 py-3 rounded focus:outline-primary">
@@ -93,7 +93,49 @@
         for(let i=0; i<10; i++) token += chars.charAt(Math.floor(Math.random()*chars.length));
         document.getElementById('token').value = token;
       });
-      document.getElementById('upload-form').addEventListener('submit', function(e) {
+      // Helper: baca file menjadi data URL, lalu resize di canvas agar ringan
+      function readFileAsDataURL(file){
+        return new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = () => resolve(reader.result);
+          reader.onerror = reject;
+          reader.readAsDataURL(file);
+        });
+      }
+      function loadImage(src){
+        return new Promise((resolve, reject) => {
+          const img = new Image();
+          img.onload = () => resolve(img);
+          img.onerror = reject;
+          img.src = src;
+        });
+      }
+      async function resizeDataUrl(dataUrl, maxW=1200, maxH=1600, quality=0.85){
+        try{
+          const img = await loadImage(dataUrl);
+          let { width, height } = img;
+          const scale = Math.min(maxW/width, maxH/height, 1);
+          const targetW = Math.round(width*scale);
+          const targetH = Math.round(height*scale);
+          const canvas = document.createElement('canvas');
+          canvas.width = targetW; canvas.height = targetH;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, targetW, targetH);
+          return canvas.toDataURL('image/jpeg', quality);
+        }catch{
+          return dataUrl; // fallback tanpa resize
+        }
+      }
+      async function filesToDataUrls(fileList){
+        const out = [];
+        for(const file of fileList){
+          const raw = await readFileAsDataURL(file);
+          const resized = await resizeDataUrl(raw);
+          out.push(resized);
+        }
+        return out;
+      }
+      document.getElementById('upload-form').addEventListener('submit', async function(e) {
         e.preventDefault();
         const name = document.getElementById('event-name').value.trim();
         const email = document.getElementById('event-email').value.trim();
@@ -104,9 +146,13 @@
           alert('Semua field dan foto wajib diisi!');
           return;
         }
-        const photos = [];
-        for(let i=0; i<files.length; i++) {
-          photos.push(files[i].name);
+        // Ubah file menjadi data URL agar bisa ditampilkan di daftar event (detail)
+        let photos = [];
+        try{
+          photos = await filesToDataUrls(files);
+        }catch(err){
+          alert('Gagal memproses foto. Coba lagi.');
+          return;
         }
         const events = getEvents();
         events.push({ name, email, paket, token, photos });

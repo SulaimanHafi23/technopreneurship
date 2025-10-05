@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bafoto Booth - Daftar Event</title>
+  <title>Bafoto Booth - Daftar pelanggan, </title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -26,8 +26,8 @@
     <nav class="flex-1">
       <ul class="space-y-2 text-[15px]">
         <li><a href="admin.html" class="group flex items-center gap-3 py-2 px-3 rounded-lg hover:bg-white/10 transition"><svg class="w-5 h-5 opacity-90" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>Dashboard</a></li>
-        <li><a href="uploadevent.html" class="group flex items-center gap-3 py-2 px-3 rounded-lg hover:bg-white/10 transition"><svg class="w-5 h-5 opacity-90" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>Upload Event</a></li>
-        <li><a href="daftarevent.html" class="group flex items-center gap-3 py-2 px-3 rounded-lg bg-white/10 font-semibold transition"><svg class="w-5 h-5 opacity-90" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>Daftar Event</a></li>
+  <li><a href="uploadevent.html" class="group flex items-center gap-3 py-2 px-3 rounded-lg hover:bg-white/10 transition"><svg class="w-5 h-5 opacity-90" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>Upload Foto</a></li>
+  <li><a href="daftarevent.html" class="group flex items-center gap-3 py-2 px-3 rounded-lg bg-white/10 font-semibold transition"><svg class="w-5 h-5 opacity-90" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>Daftar Pelanggan</a></li>
         <li><a href="login.html" class="group flex items-center gap-3 py-2 px-3 rounded-lg hover:bg-white/10 text-red-200 transition"><svg class="w-5 h-5 opacity-90" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 01-2 2H7a2 2 0 01-2-2V7a2 2 0 012-2h4a2 2 0 012 2v1"/></svg>Logout</a></li>
       </ul>
     </nav>
@@ -41,7 +41,7 @@
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
         </svg>
       </button>
-      <h1 class="text-2xl md:text-3xl font-extrabold text-primary drop-shadow flex-1 text-right md:text-left">Daftar Event</h1>
+  <h1 class="text-2xl md:text-3xl font-extrabold text-primary drop-shadow flex-1 text-right md:text-left">Daftar Pelanggan</h1>
     </header>
     <main class="flex-grow px-4 md:px-8 py-6 md:py-10">
       <section class="bg-white rounded-2xl shadow-xl border border-blue-100 p-4 md:p-8 flex flex-col items-center">
@@ -53,7 +53,7 @@
           <table class="w-full text-left border-collapse min-w-[640px] text-sm md:text-base">
           <thead>
             <tr>
-              <th class="py-2 px-3 border-b">Event</th>
+              <th class="py-2 px-3 border-b">Nama Pelanggan</th>
               <th class="py-2 px-3 border-b">Email</th>
               <th class="py-2 px-3 border-b">Token</th>
               <th class="py-2 px-3 border-b">Jumlah Foto</th>
@@ -153,7 +153,7 @@
           if(action === 'hapus') {
             deleteEvent(Number(idx));
           } else if(action === 'lihat') {
-            alert('Fitur lihat belum tersedia');
+            showEventDetail(Number(idx));
           }
         });
       }
@@ -168,9 +168,99 @@
           if(action === 'hapus') {
             deleteEvent(Number(idx));
           } else if(action === 'lihat') {
-            alert('Fitur lihat belum tersedia');
+            showEventDetail(Number(idx));
           }
         });
+      }
+      // Modal detail event
+      const modal = (function(){
+        const overlay = document.createElement('div');
+        overlay.id = 'event-modal';
+        overlay.className = 'fixed inset-0 bg-black/60 hidden items-center justify-center z-[80] p-4';
+        overlay.innerHTML = `
+          <div class="bg-white rounded-2xl shadow-2xl max-w-3xl w-full p-5 md:p-7 relative" role="dialog" aria-modal="true">
+            <button id="event-modal-close" class="absolute top-3 right-3 inline-flex items-center justify-center p-2 rounded-lg border border-gray-200 bg-white hover:bg-gray-50" aria-label="Tutup">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+            <div id="event-modal-content"></div>
+          </div>
+        `;
+        document.body.appendChild(overlay);
+        const panel = overlay.firstElementChild;
+        const closeBtn = overlay.querySelector('#event-modal-close');
+        const open = () => { overlay.classList.remove('hidden'); overlay.classList.add('flex'); document.body.classList.add('overflow-hidden'); };
+        const close = () => { overlay.classList.add('hidden'); overlay.classList.remove('flex'); document.body.classList.remove('overflow-hidden'); };
+        overlay.addEventListener('click', (e) => { if(e.target === overlay) close(); });
+        closeBtn.addEventListener('click', close);
+        document.addEventListener('keydown', (e) => { if(e.key === 'Escape' && !overlay.classList.contains('hidden')) close(); });
+        return { overlay, panel, open, close };
+      })();
+
+      function isProbablyUrl(str){
+        return typeof str === 'string' && (/^(https?:)?\/\//i.test(str) || /^data:image\//i.test(str));
+      }
+      function imgItemTemplate(src, index){
+        const safe = isProbablyUrl(src) ? src : null;
+        if(!safe){
+          return `<div class="bg-gray-100 rounded-lg p-3 text-xs text-gray-600">Item ${index+1}</div>`;
+        }
+        const full = src;
+        const placeholder = 'https://via.placeholder.com/300x400.png?text=Foto';
+        return `
+          <a href="${full}" target="_blank" rel="noopener" class="group block">
+            <div class="relative rounded-lg overflow-hidden aspect-[3/4] bg-white border border-gray-200 shadow-sm">
+              <img src="${safe}" alt="Foto ${index+1}" loading="lazy" decoding="async" referrerpolicy="no-referrer"
+                   class="absolute inset-0 w-full h-full object-contain group-hover:scale-[1.02] transition-transform duration-200"
+                   onerror="this.onerror=null;this.src='${placeholder}'">
+              <div class="absolute inset-0 ring-2 ring-white pointer-events-none"></div>
+            </div>
+          </a>`;
+      }
+      function showEventDetail(idx){
+        const events = getEvents();
+        const ev = events[idx];
+        if(!ev){ return; }
+        const content = document.getElementById('event-modal-content');
+        const photos = Array.isArray(ev.photos) ? ev.photos : [];
+        const photosGrid = photos.length
+          ? `<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">${photos.map((p,i)=>imgItemTemplate(p,i)).join('')}</div>`
+          : `<div class="text-sm text-gray-500">Belum ada foto.</div>`;
+        content.innerHTML = `
+          <h2 class="text-xl md:text-2xl font-extrabold text-primary mb-2">Detail Foto</h2>
+          <div class="text-sm text-gray-600 mb-4">Terakhir diperbarui: <span>${new Date().toLocaleString()}</span></div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
+            <div class="bg-gray-50 rounded-xl p-3 border border-gray-200">
+              <div class="text-xs text-gray-500">Nama Event</div>
+              <div class="font-semibold">${ev.name || '-'}</div>
+            </div>
+            <div class="bg-gray-50 rounded-xl p-3 border border-gray-200">
+              <div class="text-xs text-gray-500">Email</div>
+              <div class="font-semibold break-all">${ev.email || '-'}</div>
+            </div>
+            <div class="bg-gray-50 rounded-xl p-3 border border-gray-200">
+              <div class="text-xs text-gray-500">Token</div>
+              <div class="flex items-center gap-2"><span class="font-semibold">${ev.token || '-'}</span>
+                <button id="copy-token" class="text-primary text-xs px-2 py-1 rounded border border-primary hover:bg-primary hover:text-white transition">Salin</button>
+              </div>
+            </div>
+            <div class="bg-gray-50 rounded-xl p-3 border border-gray-200">
+              <div class="text-xs text-gray-500">Jumlah Foto</div>
+              <div class="font-semibold">${photos.length}</div>
+            </div>
+          </div>
+          <div class="flex items-center justify-between mb-2">
+            <h3 class="text-lg font-bold text-gray-800">Foto</h3>
+            <a href="preview.html" class="text-primary text-sm hover:underline">Buka Preview</a>
+          </div>
+          ${photosGrid}
+        `;
+        modal.open();
+        const copyBtn = document.getElementById('copy-token');
+        if(copyBtn){
+          copyBtn.addEventListener('click', async () => {
+            try { await navigator.clipboard.writeText(ev.token || ''); copyBtn.textContent = 'Disalin!'; setTimeout(()=>copyBtn.textContent='Salin', 1500); } catch { alert('Gagal menyalin'); }
+          });
+        }
       }
       renderEvents();
     });

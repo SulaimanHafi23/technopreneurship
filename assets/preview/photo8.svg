@@ -1,0 +1,14 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='600' height='800' viewBox='0 0 600 800'>
+  <defs>
+    <linearGradient id='g8' x1='0' y1='1' x2='1' y2='0'>
+      <stop offset='0%' stop-color='#FFEDD5'/>
+      <stop offset='100%' stop-color='#FED7AA'/>
+    </linearGradient>
+  </defs>
+  <rect width='600' height='800' fill='url(#g8)'/>
+  <rect x='40' y='40' width='520' height='720' fill='white' rx='16'/>
+  <rect x='60' y='60' width='480' height='640' fill='#fed7aa' rx='12'/>
+  <circle cx='340' cy='360' r='100' fill='#fb923c'/>
+  <rect x='60' y='720' width='480' height='40' fill='#1D4ED8' rx='8'/>
+  <text x='300' y='748' text-anchor='middle' font-family='Poppins, Arial' font-size='24' fill='white'>Bafoto Booth</text>
+</svg>
